@@ -33,3 +33,7 @@ We plan to use a marker cluster method as seen in image 2 when mapping the logge
 (image 2) </br>
 ![image](https://github.com/Jadon55/Project-3/assets/91498217/fbdc41ef-a356-4070-ad88-38c65b38b0c6)
 
+(image 3) Dashboard design v1</br>
+![Dashboard_V1](https://github.com/Jadon55/Project-3/assets/78763124/1797678f-da0f-4e53-8848-fa939f82b66c)
+
+
