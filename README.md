@@ -13,7 +13,7 @@ The following questions will be investigated to highlight this issue, in the hop
 
 1. How many crashes were logged over the 5 year period?
 2. Are the number of crashes per year increasing or decreasing?
-3. Which month is the most dangerous month for drivers?
+3. Which public holiday is the most dangerous for drivers?
 4. Do any common geographical accident zones stand out?
 5. Which region has the most fatalities on the road?
 6. What are the most common factors leading to crashes?
