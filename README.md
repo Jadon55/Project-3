@@ -3,7 +3,7 @@ Data Science Bootcamp - Project 3
 
 # Project Proposal
 ## Executive Summary
-According to a 2018 study conducted by FIGURES NZ (image 1), Motor Vehicles accidents are the leading cause of accidental injury death in New Zealand. This projects aims to explore road accident data from the New Zealand Transport Agency (NZTA) and identify key trends involved in crashes over a 5 year period.
+According to a 2018 study conducted by FIGURES NZ (image 1), Motor Vehicles accidents are the leading cause of accidental injury death in New Zealand. This projects aims to explore road accident data from the New Zealand Transport Agency (NZTA) and identify key trends involved in crashes over a 5 year period (2018 - 2022).
 
 (Image 1) <br/>
 ![image](https://github.com/Jadon55/Project-3/assets/91498217/de7da3ef-22ac-40fc-af8b-5da442bb172f) </br>
