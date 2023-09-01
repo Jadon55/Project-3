@@ -61,7 +61,10 @@ body{
 }
 
 
-
+.selector h2{
+    text-decoration: underline;
+    padding-top: 20px;
+}
 #statdata h1{
     text-decoration: underline;
     padding-top: 20px;
