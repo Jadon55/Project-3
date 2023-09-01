@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/site.css">
+</head>
+
+<body>
+    <div>
+        <!-- Header -->
+        <div class="text-center">
+            <h1 id="title">Challenge 10: Climate App</h1>
+            <h4>Link to the github: <a href="https://github.com/Jadon55/Project-2">https://github.com/Jadon55/Project-2</a></h4>
+        </div>
+
+        <!-- Possible routes -->
+        <div id="mainPage">
+            <h3>All Available Routes:</h3>
+            <ul>
+                <li>
+                    /api/v1.0/table-name
+                    <a href='/api/v1.0/campain'><button>Try Me!</button></a>
+                    <p class="description">returns all data from the specified table</p>
+                </li>
+                <li>
+                    /api/v1.0/table-name/column1,column2
+                    <a href='/api/v1.0/campain/cf_id,company_name'><button>Try Me!</button></a>
+                    <p class="description">returns selected column or columns from the specified table</p>
+                </li>
+                <li>
+                    /api/v1.0/table-name/column/data-value
+                    <a href='/api/v1.0/campain/cf_id/147'><button>Try Me!</button></a>
+                    <p class="description">returns all rows that have the data-value in the specified column from the specified table</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+
+<!-- return (
+        f"Project 2 API<br/>"
+        f"Available Routes:<br/>"
+        f"/api/v1.0/table-name \
+            <br/> - returns all data in that table"
+        f"/api/v1.0/table-name/column <br/>"
+        f"/api/v1.0/table-name/column/data-value <br/>"
+    ) -->
