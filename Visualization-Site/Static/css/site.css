@@ -81,4 +81,10 @@ ol {
     padding-left: 20px;
 }
 
-
+.bigmap{
+    background-color: rgb(33,37,41);
+    margin: auto;
+    margin-top: 50px;
+    height: 600px;
+    border-radius: 20px;
+}
