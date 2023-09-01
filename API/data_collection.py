@@ -8,5 +8,17 @@ def test():
     print("start")
     result = engine.execute(text('SELECT * FROM "Crashes"'))
     result_dicts = [dict(row) for row in result]
-    print(result_dicts)
+    print(result_dicts[0])
     print("end")
+
+def getAll():
+    engine = create_engine("postgresql://postgres:project3@107.172.217.213:5432/project3")
+    result = engine.execute(text('SELECT * FROM "Crashes"'))
+    result_dicts = [dict(row) for row in result]
+    return result_dicts
+
+def getYear(year):
+    engine = create_engine("postgresql://postgres:project3@107.172.217.213:5432/project3")
+    result = engine.execute(text(f'SELECT * FROM "Crashes" WHERE crashYear IS {year}'))
+    result_dicts = [dict(row) for row in result]
+    return result_dicts
