@@ -19,6 +19,6 @@ def getAll():
 
 def getYear(year):
     engine = create_engine("postgresql://postgres:project3@107.172.217.213:5432/project3")
-    result = engine.execute(text(f'SELECT * FROM "Crashes" WHERE crashYear IS {year}'))
+    result = engine.execute(text(f'SELECT * FROM "Crashes" WHERE "crashYear" = {year}'))
     result_dicts = [dict(row) for row in result]
     return result_dicts

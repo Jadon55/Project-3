@@ -1,3 +1,16 @@
+// collect data from the API
+let elements = [];
+d3.json("All-Presaved.json").then(data =>{
+    data.forEach(element => {
+        elements.push(element);
+    });
+    console.log(elements.length);
+});
+
+
+
+
+
 // create map
 var map = L.map('map').setView([-43.529011, 172.641516], 13);
 
