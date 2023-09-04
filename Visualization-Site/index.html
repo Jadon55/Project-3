@@ -8,6 +8,7 @@
 
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
 </head>
 <body>
     <!-- navbar -->
@@ -29,6 +30,12 @@
             </div>
         </div>
     </nav>
+
+    <!-- Loading screen HTML -->
+    <div class="loading-screen" id="loading-screen">
+        <!-- Add your loading icon or message here -->
+        <div>Loading...</div>
+    </div>
 
     <!-- title -->
     <div class="container dashtitle">
@@ -69,25 +76,23 @@
                     <table>
                         <tr>
                             <td>Number of Crashes:</td>
-                            <td>null</td>
+                            <td id="n-crashes">null</td>
                         </tr>
                         <tr>
                             <td>Number of Fatalities:</td>
-                            <td>null</td>
+                            <td id="n-deaths">null</td>
                         </tr>
                         <tr>
-                            <td>Most Dangerous Month:</td>
-                            <td>null</td>
+                            <td>Most Dangerous Holiday:</td>
+                            <td id="holiday">null</td>
                         </tr>
                         <tr>
-                            <td>Top 3 Factors:</td>
-                            <td>
-                                <ol>
-                                    <li>null</li>
-                                    <li>null</li>
-                                    <li>null</li>
-                                </ol>
-                            </td>
+                            <td>Most Dangerous Light Condidion:</td>
+                            <td id="light">null</td>
+                        </tr>
+                        <tr>
+                            <td>Most Dangerous Road Condidion:</td>
+                            <td id="roadCharacter">null</td>
                         </tr>
                     </table>
                 </div>
@@ -105,6 +110,8 @@
 
     <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster-src.js'></script>
     <!-- D3 -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- plotly -->
