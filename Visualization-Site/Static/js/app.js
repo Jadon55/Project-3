@@ -38,7 +38,7 @@ function drawMap(){
         attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'
     }).addTo(map);
 
-    markers = new L.MarkerClusterGroup();
+    markers = L.markerClusterGroup();
     map.addLayer(markers);
 
     updateWindow();
@@ -51,7 +51,9 @@ function drawMap(){
 function addMarkers(item){
     let lat = parseFloat(item["latitude"]);
     let lon = parseFloat(item["longitude"]);
-    let mark = L.marker([lat, lon]).addTo(map);
+    // let mark = L.marker([lat, lon]).addTo(map);
+    let mark = L.marker([lat, lon]);
+    markers.addLayer(mark);
 
     // console.log(item);
     mark.bindPopup(`
@@ -100,7 +102,7 @@ function drawPie(data){
     }];
     
     let p_layout = {
-        title: `Crasher By Holiday`
+        title: `Crashes By Holiday`
     };
     
     Plotly.newPlot('other', p_data, p_layout);
