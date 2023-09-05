@@ -213,7 +213,7 @@ function refreshStats(data){
             }
         }
         // roadCharacterCounts
-        if (item.roadCharacter !== "NULL" ){
+        if (item.roadCharacter !== "Nil" ){
             if (!roadCharacterCounts[item.roadCharacter]) {
                 roadCharacterCounts[item.roadCharacter] = 1;
             } else {
