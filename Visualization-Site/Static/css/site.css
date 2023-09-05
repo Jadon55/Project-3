@@ -154,3 +154,8 @@ button{
     margin-bottom: 30px;
     border-radius: 15px;
 }
+
+canvas{
+    border-radius: 15px;
+    margin-top: 10px;
+}
