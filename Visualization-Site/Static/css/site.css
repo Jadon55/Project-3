@@ -109,3 +109,10 @@ ol {
     color: black;
     font-size: 50px;
 }
+
+div.buttons{
+    margin-top: 50px;
+}
+button{
+    margin: 5px;
+}

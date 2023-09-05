@@ -295,3 +295,8 @@ function optionChanged(id){
     else if(id == "2018")
         getData("2018");
 };
+
+// location button
+function locationButton(lat, lon){
+    map.setView([lat, lon], 8);
+}
