@@ -26,7 +26,7 @@ map.addGeoJSONTiles('https://{s}.data.osmbuildings.org/0.2/ph2apjye/tile/{z}/{x}
 
 function addTower(crash){
     let location = [parseFloat(crash["longitude"]), parseFloat(crash["latitude"])]
-    let size = .00010;
+    let size = .00008;
     let points = [
         [location[0]-size, location[1]-size],
         [location[0]+size, location[1]-size],
@@ -43,7 +43,7 @@ function addTower(crash){
         color = "orange";
     if(parseInt(crash.fatalInjuries) > 0)
         color = "red";
-    // speed limit set to height of tower
+    // speed limit
     let speed = parseInt(crash.speedLimit);
 
     map.addGeoJSON({
@@ -53,7 +53,8 @@ function addTower(crash){
             properties: {
                 color: color,
                 roofColor: color,
-                height: speed,
+                height: 10+(30*injuries),
+                // height: speed,
                 minHeight: 0
             },
             geometry: {
@@ -77,5 +78,32 @@ function updateWindow(){
     // addTower(filteredDicts[0]);
     filteredDicts.forEach(crash => addTower(crash));
 };
-map.on('zoomend', updateWindow);
-map.on('moveend', updateWindow);
+
+function onMoved(){
+    console.log("moved");
+    updateWindow();
+}
+function onZoomed(){
+    console.log("zoomed");
+    updateWindow();
+}
+
+var initialCenter = map.getPosition();
+var initialZoom = map.getZoom();
+// Check for changes in map center and zoom level using a setInterval
+setInterval(function () {
+    var currentCenter = map.getPosition();
+    var currentZoom = map.getZoom();
+
+    // Check if the map has moved
+    if (currentCenter.latitude !== initialCenter.latitude || currentCenter.longitude !== initialCenter.longitude) {
+        onMoved();
+        initialCenter = currentCenter; // Update the initial center
+    }
+
+    // Check if the map has zoomed
+    if (currentZoom !== initialZoom) {
+        onZoomed();
+        initialZoom = currentZoom; // Update the initial zoom level
+    }
+}, 1000); // Adjust the interval as needed

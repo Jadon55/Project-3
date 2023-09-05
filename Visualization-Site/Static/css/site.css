@@ -30,6 +30,9 @@ body{
     text-align: center;
     height: 290px;
 }
+#dropdown{
+    margin-top: 30px;
+}
 
 #other{
     background-color: rgb(60,60,60);
@@ -91,8 +94,6 @@ ol {
     height: 600px;
     border-radius: 20px;
 }
-
-
 
 .loading-screen {
     position: fixed;

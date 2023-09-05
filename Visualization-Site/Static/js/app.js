@@ -3,21 +3,30 @@
 const loadingScreen = document.getElementById("loading-screen");
     // collect data from the API
 let allData = [];
-d3.json("All-Presaved.json").then(data =>{
-    data.forEach(element => {
-        allData.push(element);
+getData("all");
+function getData(year){
+    loadingScreen.style.display = "flex";
+    d3.json("All-Presaved.json").then(data =>{
+        data.forEach(element => {
+            allData.push(element);
+        });
+
+        // filter year
+        if(year != "all")
+            allData = allData.filter(dict => dict["crashYear"] = year);
+
+        
+        // print done
+        console.log(`${year} Data Loaded`);
+
+        // graphs setup
+        drawMap();
+        refreshGraphs(allData);
+
+        // remove loading screen
+        loadingScreen.style.display = "none";
     });
-
-    // print done
-    console.log("Data Loaded");
-
-    // graphs setup
-    drawMap();
-    refreshGraphs(allData);
-
-    // remove loading screen
-    loadingScreen.style.display = "none";
-});
+};
 
 function refreshGraphs(data){
     drawPie(data);
@@ -255,14 +264,11 @@ function refreshStats(data){
     let roadCharacter;
     let roadCharacter_count = 0;
     for (const key in roadCharacterCounts) {
-        if (roadCharacterCounts.hasOwnProperty(key)) {
-            const value = roadCharacterCounts[key];
-            if(value > holiday_count){
-                roadCharacter = key;
-                roadCharacter_count = value
-            }
+        const value = roadCharacterCounts[key];
+        if(value > roadCharacter_count){
+            roadCharacter = key;
+            roadCharacter_count = value
         }
-    
     }
     replacementValues.push(roadCharacter);
 
@@ -271,4 +277,21 @@ function refreshStats(data){
     d3.select("#holiday").text(replacementValues[2]);
     d3.select("#light").text(replacementValues[3]);
     d3.select("#roadCharacter").text(replacementValues[4]);
+};
+
+
+// dropdown changed
+function optionChanged(id){
+    if(id == "all")
+        getData("all");
+    else if(id == "2022")
+        getData("2022");
+    else if(id == "2021")
+        getData("2021");
+    else if(id == "2020")
+        getData("2020");
+    else if(id == "2019")
+        getData("2019");
+    else if(id == "2018")
+        getData("2018");
 };
