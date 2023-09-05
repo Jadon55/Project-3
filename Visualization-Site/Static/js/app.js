@@ -71,6 +71,7 @@ function addMarkers(item){
     );
 };
 function updateWindow(){
+    markers.clearLayers();
     let box = map.getBounds();
     const swLat = box["_southWest"]["lat"];
     const neLat = box["_northEast"]["lat"];
@@ -298,5 +299,5 @@ function optionChanged(id){
 
 // location button
 function locationButton(lat, lon){
-    map.setView([lat, lon], 8);
+    map.setView([lat, lon], 15);
 }

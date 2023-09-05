@@ -11,6 +11,12 @@ body{
     border-radius: 20px;
     text-align: center;
 }
+.dashtitle h4{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 300;
+    text-decoration: overline;
+}
 
 .dashboard{
     background-color: rgb(33,37,41);
@@ -115,4 +121,36 @@ div.buttons{
 }
 button{
     margin: 5px;
+}
+
+.text-block{
+    background-color: rgb(33,37,41);
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.text-block h3{
+    padding-top: 10px;
+    text-decoration: underline;
+}
+.text-block p{
+    font-size: large;
+    padding: 15px;
+    padding-top: 10px;
+
+}
+.text-block ol{
+    padding: 0%;
+}
+.text-block li{
+    list-style-position: inside;
+}
+.text-block a{
+    margin-top: 190px;
+}
+.text-block img{
+    width: 80%;
+    margin-bottom: 30px;
+    border-radius: 15px;
 }

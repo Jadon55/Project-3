@@ -28,8 +28,46 @@
     </nav>
 
     <!-- title -->
+
     <div class="container dashtitle">
         <h1>About The Project</h1>
+        <h4>&nbsp; &nbsp; &nbsp;Alec, Jadon, Nic&nbsp; &nbsp; &nbsp;</h4>
     </div>
+
+    <div class="container text-block">
+        <h3>Executive Summary</h3>
+        <p>According to a 2018 study conducted by FIGURES NZ (image 1), 
+            Motor Vehicles accidents are the leading cause of accidental injury death in New Zealand. 
+            This projects aims to explore road accident data from the New Zealand Transport Agency (NZTA) and identify key trends involved in crashes over a 5 year period (2018 - 2022).
+        </p>
+        <img src="./static/images/NZdeaths.png" alt="Causes of death in New Zealand">
+    </div>
+
+    <div class="container text-block">
+        <h3>Questions We Asked</h3>
+        <ol>
+            <li>How many crashes were logged over the 5 year period?</li>
+            <li>Are the number of crashes per year increasing or decreasing?</li>
+            <li>Which public holiday is the most dangerous for drivers?</li>
+            <li>Do any common geographical accident zones stand out?</li>
+            <li>Which region has the most fatalities on the road?</li>
+            <li>What are the most common factors leading to crashes?</li>
+        </ol>
+        <p>The findings will be presented on an interactive dashboard with graphs/plots and an interactive map plotting the logged road accidents.</p>
+    </div>
+
+    <div class="container text-block">
+        <h3>The Data</h3>
+        <p>The dataset we will be working from is the Crash Analysis System data provided by the NZTA to the public at:
+            <a href="https://catalogue.data.govt.nz/dataset/crash-analysis-system-cas-data5/resource/1b5d64f2-ed66-4b72-b4c3-c87e43ced5bd?inner_span=True">https://catalogue.data.govt.nz/dataset/crash-analysis-system-cas-data5/resource/1b5d64f2-ed66-4b72-b4c3-c87e43ced5bd?inner_span=True</a></p>
+        <p style="margin-top: -20px;">The dataset contains logged traffic accidents provided to the NZTA by the New Zealand Police. It was last updated in August 2023.</p>
+    </div>
+
+    <div class="container text-block">
+        <h3>Dashboard inspiration</h3>
+        <p>We plan to use a marker cluster method as seen in image 2 when mapping the logged road accidents to help identify common geographical accident zones and conserve resources.</p>
+        <img src="./static/images/clustermap.png" alt="Example Cluster Map">
+    </div>
+    <br>
 </body>
 </html>
