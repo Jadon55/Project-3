@@ -12,26 +12,25 @@ d3.json("All-Presaved.json").then(data =>{
     console.log("Data Loaded");
 
     // graphs setup
-    refreshGraphs();
+    drawMap();
+    refreshGraphs(allData);
 
     // remove loading screen
     loadingScreen.style.display = "none";
 });
 
-function refreshGraphs(){
-    drawMap();
-    drawPie();
+function refreshGraphs(data){
+    drawPie(data);
     drawBar();
-    refreshStats();
+    refreshStats(data);
 };
 
 
 
 // create map
-var map;
+var map = L.map('map').setView([-43.5303157954806, 172.635393560578], 15);
 var markers;
 function drawMap(){
-    map = L.map('map').setView([-43.529011, 172.641516], 10);
 
     // Add Stadia Alidade Smooth Dark tile layer
     L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
@@ -42,37 +41,66 @@ function drawMap(){
     markers = new L.MarkerClusterGroup();
     map.addLayer(markers);
 
-
-    allData.forEach(item => {
-        addMarker([parseInt(item["latitude"]), parseInt(item["longitude"])], "red");
-    });
+    updateWindow();
 };
+
 
 
 
 // create markers
-function addMarker(location){
-    var point = L.marker(location);
+function addMarkers(item){
+    let lat = parseFloat(item["latitude"]);
+    let lon = parseFloat(item["longitude"]);
+    let mark = L.marker([lat, lon]).addTo(map);
 
-    // add popup for the earthquake
-    // circle.bindPopup(`
-    //     <h2>Mag: ${size}</h2>
-    //     <h2>Depth: ${depth}</h2>
-    //     <h2>Location: ${location}</h2>`
-    // );
+    // console.log(item);
+    mark.bindPopup(`
+        <h2>Lat: ${lat}</h2>
+        <h2>Lon: ${lon}</h2>`
+    );
 };
+function updateWindow(){
+    let box = map.getBounds();
+    const swLat = box["_southWest"]["lat"];
+    const neLat = box["_northEast"]["lat"];
+    const swLng = box["_southWest"]["lng"];
+    const neLng = box["_northEast"]["lng"];
+    const filteredDicts = allData.filter(dict => parseFloat(dict["latitude"]) > swLat && parseFloat(dict["latitude"]) < neLat && parseFloat(dict["longitude"]) > swLng && parseFloat(dict["longitude"]) < neLng);
+    // console.log(filteredDicts.length);
+
+    // add markers
+    filteredDicts.forEach(item => {
+        addMarkers(item);
+    });
+    // refresh data
+    refreshGraphs(filteredDicts);
+};
+map.on('zoomend', updateWindow);
+map.on('moveend', updateWindow);
 
 
 // pie graph
-function drawPie(){
+function drawPie(data){
+    let holidayCounts = {};
+    for (const item of data) {
+        // crashes per holiday
+        if (item.holiday !== "NULL" ){
+            if (!holidayCounts[item.holiday]) {
+                holidayCounts[item.holiday] = 1;
+            } else {
+                holidayCounts[item.holiday]++;
+            }
+        }
+    }
+
     let p_data = [{
-        labels: ["2001", "2002", "2003", "2004", "2005"],
-        values: [10,20,30,40,50],
+        labels: Object.keys(holidayCounts),
+        values: Object.values(holidayCounts),
         type: 'pie'
     }];
     
     let p_layout = {
-        title: `Pie Chart for {year}`
+        title: `Crasher By Holiday`
     };
     
     Plotly.newPlot('other', p_data, p_layout);
@@ -113,7 +141,6 @@ function drawBar(){
         else if(item.crashYear == "2018")
             deaths[2018] += parseInt(item.fatalInjuries);
     };
-    console.log(Object.values(deaths));
 
     let b_data = [{
         y: Object.values(deaths),
@@ -151,16 +178,16 @@ window.addEventListener('resize', function() {
 
 
 // update stats
-function refreshStats(){
+function refreshStats(data){
     let replacementValues = [];
     // num of crashes
-    replacementValues.push(allData.length);
+    replacementValues.push(data.length);
     // loop through data
     let totalFatalInjuries = 0;
     let holidayCounts = {};
     let lightCounts = {};
     let roadCharacterCounts = {};
-    for (const item of allData) {
+    for (const item of data) {
         // num of deaths
         if (item.fatalInjuries !== undefined) {
             totalFatalInjuries += parseInt(item.fatalInjuries);
