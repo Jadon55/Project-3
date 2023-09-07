@@ -8,27 +8,36 @@ getData("all");
 function getData(year){
     allData = [];
     loadingScreen.style.display = "flex";
-    d3.json("All-Presaved.json").then(data =>{
-        data.forEach(element => {
-            allData.push(element);
+    if(year == "all"){
+        d3.json(`http://107.172.217.213:5000/api/v1.0`).then(data =>{
+            console.log(data);
+            data.forEach(element => {
+                allData.push(element);
+            });
+        }).then(() => {
+            console.log(`${year} Data Loaded`);
+            // graphs setup
+            drawMap();
+            refreshGraphs(allData);
+
+            // remove loading screen
+            loadingScreen.style.display = "none";
         });
+    } else{
+        d3.json(`http://107.172.217.213:5000/api/v1.0/${year}`).then(data =>{
+            data.forEach(element => {
+                allData.push(element);
+            });
+        }).then(() => {
+            console.log(`${year} Data Loaded`);
+            // graphs setup
+            drawMap();
+            refreshGraphs(allData);
 
-        // filter year
-        if(year != "all"){
-            allData = allData.filter(dict => dict["crashYear"] == year);
-        }
-
-        
-        // print done
-        console.log(`${year} Data Loaded`);
-
-        // graphs setup
-        drawMap();
-        refreshGraphs(allData);
-
-        // remove loading screen
-        loadingScreen.style.display = "none";
-    });
+            // remove loading screen
+            loadingScreen.style.display = "none";
+        });
+    }
 };
 
 function refreshGraphs(data){
@@ -102,7 +111,7 @@ function drawPie(data){
     let holidayCounts = {};
     for (const item of data) {
         // crashes per holiday
-        if (item.holiday !== "NULL" ){
+        if (item.holiday !== null ){
             if (!holidayCounts[item.holiday]) {
                 holidayCounts[item.holiday] = 1;
             } else {
@@ -228,7 +237,7 @@ function refreshStats(data){
         }
 
         // crashes per holiday
-        if (item.holiday !== "NULL" ){
+        if (item.holiday !== null ){
             if (!holidayCounts[item.holiday]) {
                 holidayCounts[item.holiday] = 1;
             } else {
