@@ -3,8 +3,10 @@
 const loadingScreen = document.getElementById("loading-screen");
     // collect data from the API
 let allData = [];
+var barData = null;
 getData("all");
 function getData(year){
+    allData = [];
     loadingScreen.style.display = "flex";
     d3.json("All-Presaved.json").then(data =>{
         data.forEach(element => {
@@ -12,8 +14,9 @@ function getData(year){
         });
 
         // filter year
-        if(year != "all")
-            allData = allData.filter(dict => dict["crashYear"] = year);
+        if(year != "all"){
+            allData = allData.filter(dict => dict["crashYear"] == year);
+        }
 
         
         // print done
@@ -66,8 +69,11 @@ function addMarkers(item){
 
     // console.log(item);
     mark.bindPopup(`
-        <h2>Lat: ${lat}</h2>
-        <h2>Lon: ${lon}</h2>`
+        <h3>Lat: ${lat}</h3>
+        <h3>Lon: ${lon}</h3>
+        <h3>Fatal Injuries: ${item["fatalInjuries"]}</h3>
+        <h3>Other Injuries: ${parseInt(item["seriousInjuries"]) + parseInt(item["minorInjuries"])}</h3>
+        <h3>Holiday: ${item["holiday"]}</h3>`
     );
 };
 function updateWindow(){
@@ -140,27 +146,43 @@ function drawBar(){
         2019: 0,
         2018: 0
     };
+    let crashes = {
+        2022: 0,
+        2021: 0,
+        2020: 0,
+        2019: 0,
+        2018: 0
+    };
     for (const item of allData) {
         // num of deaths
-        if(item.crashYear == "2022")
+        if(item.crashYear == "2022"){
             deaths[2022] += parseInt(item.fatalInjuries);
-        else if(item.crashYear == "2021")
+            crashes[2022] += 1;
+        } else if(item.crashYear == "2021") {
             deaths[2021] += parseInt(item.fatalInjuries);
-        else if(item.crashYear == "2020")
+            crashes[2021] += 1;
+        } else if(item.crashYear == "2020") {
             deaths[2020] += parseInt(item.fatalInjuries);
-        else if(item.crashYear == "2019")
+            crashes[2020] += 1;
+        } else if(item.crashYear == "2019") {
             deaths[2019] += parseInt(item.fatalInjuries);
-        else if(item.crashYear == "2018")
+            crashes[2019] += 1;
+        } else if(item.crashYear == "2018") {
             deaths[2018] += parseInt(item.fatalInjuries);
+            crashes[2018] += 1;
+        }
     };
 
     let b_data = [{
-        y: Object.values(deaths),
-        x: Object.keys(deaths),
+        // y: Object.values(deaths),
+        // x: Object.keys(deaths),
+        y: Object.values(crashes),
+        x: Object.keys(crashes),
         type: 'bar'
     }];
     let b_layout = {
-        title: 'Fatalities By Year',
+        // title: 'Fatalities By Year',
+        title: 'Crashes By Year',
         xaxis: {
             title: 'Year',
             tickvals: Object.keys(deaths)
@@ -170,7 +192,7 @@ function drawBar(){
         }
     };
     Plotly.newPlot("bar", b_data, b_layout);
-        // round the edges of the chart
+    
     var plotDiv = document.getElementsByClassName('main-svg')
     plotDiv[0].style.borderRadius = "15px";
     plotDiv[3].style.borderRadius = "15px";
@@ -231,8 +253,12 @@ function refreshStats(data){
             }
         }
     }
+
+
         // total deaths
     replacementValues.push(totalFatalInjuries);
+
+
         // holiday
     let holiday;
     let holiday_count = 0;
@@ -246,7 +272,12 @@ function refreshStats(data){
         }
     
     }
+    if(holiday == null){
+        holiday = "none";
+    }
     replacementValues.push(holiday);
+
+
         // light
     let light;
     let light_count = 0;
@@ -260,7 +291,12 @@ function refreshStats(data){
         }
     
     }
+    if(light == null){
+        light = "none";
+    }
     replacementValues.push(light);
+
+
         // roadCharacter
     let roadCharacter;
     let roadCharacter_count = 0;
@@ -271,7 +307,11 @@ function refreshStats(data){
             roadCharacter_count = value
         }
     }
+    if(roadCharacter == null){
+        roadCharacter = "none";
+    }
     replacementValues.push(roadCharacter);
+
 
     d3.select("#n-crashes").text(replacementValues[0]);
     d3.select("#n-deaths").text(replacementValues[1]);
