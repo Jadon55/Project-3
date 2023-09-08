@@ -3,129 +3,62 @@
 -- drop views if already exist
 DROP VIEW IF EXISTS 
 totalCrashCount, 
-crashesByYear, total2018, total2019, total2020, total2021, total2022,
-fatalCrashesYear, fatalCrashes2018,fatalCrashes2019,fatalCrashes2020,fatalCrashes2021,fatalCrashes2022,
-deathsByYear, deaths2018, deaths2019, deaths2020, deaths2021, deaths2022,
-holidayFatalCrashes
+crashesByYear,
+fatalCrashesYear,
+totalDeaths,
+deathsByYear,
+holidayFatalCrashes,
+holidayDeaths,
+deathsByRegion,
+deathsByTerritory,
+commonFactors
 ;
 
--- create view of overall crash count
+
+
+-- Overall crash count for the 5 year period
 CREATE VIEW totalCrashCount
 AS
 SELECT COUNT(*)
 FROM "Crashes";
 
--- create view of each year's crash count
-CREATE VIEW total2018
-AS
-SELECT COUNT(*) crashes2018
-FROM "Crashes"
-WHERE "crashYear" = 2018;
 
-CREATE VIEW total2019
-AS
-SELECT COUNT(*) AS crashes2019
-FROM "Crashes"
-WHERE "crashYear" = 2019;
 
-CREATE VIEW total2020
-AS
-SELECT COUNT(*) AS crashes2020
-FROM "Crashes"
-WHERE "crashYear" = 2020;
-
-CREATE VIEW total2021
-AS
-SELECT COUNT(*) AS crashes2021
-FROM "Crashes"
-WHERE "crashYear" = 2021;
-
-CREATE VIEW total2022
-AS
-SELECT COUNT(*) AS crashes2022
-FROM "Crashes"
-WHERE "crashYear" = 2022
-GROUP BY "crashYear";
-
--- create a view with each year on one result
+-- number of crashes by year
 CREATE VIEW crashesByYear
 AS
-SELECT *
-FROM total2018, total2019, total2020, total2021, total2022;
-
--- create view for each year's fatal crash count
-CREATE VIEW fatalCrashes2018
-AS
-SELECT COUNT(*) AS fatalCrashes2018
+SELECT DISTINCT "crashYear" AS crashYear, COUNT("crashYear") AS crashNumber
 FROM "Crashes"
-WHERE "crashYear" = 2018 AND "crashSeverity" = 'Fatal Crash';
+GROUP BY crashYear;
 
-CREATE VIEW fatalCrashes2019
-AS
-SELECT COUNT(*) AS fatalCrashes2019
-FROM "Crashes"
-WHERE "crashYear" = 2019 AND "crashSeverity" = 'Fatal Crash';
 
-CREATE VIEW fatalCrashes2020
-AS
-SELECT COUNT(*) AS fatalCrashes2020
-FROM "Crashes"
-WHERE "crashYear" = 2020 AND "crashSeverity" = 'Fatal Crash';
 
-CREATE VIEW fatalCrashes2021
-AS
-SELECT COUNT(*) AS fatalCrashes2021
-FROM "Crashes"
-WHERE "crashYear" = 2021 AND "crashSeverity" = 'Fatal Crash';
-
-CREATE VIEW fatalCrashes2022
-AS
-SELECT COUNT(*) AS fatalCrashes2022
-FROM "Crashes"
-WHERE "crashYear" = 2022 AND "crashSeverity" = 'Fatal Crash';
-
--- create view with each year's fatal crash count on one result
+-- number of fatal crashes by year
 CREATE VIEW fatalCrashesYear
 AS
-SELECT *
-FROM fatalCrashes2018, fatalCrashes2019, fatalCrashes2020, fatalCrashes2021, fatalCrashes2022;
+SELECT DISTINCT "crashYear" AS crashYear, COUNT("crashSeverity") AS fatalCrashCount
+FROM "Crashes"
+WHERE "crashSeverity" = 'Fatal Crash'
+GROUP BY crashYear;
+
+
 
 -- Deaths by year
-CREATE VIEW deaths2018
-AS
-SELECT SUM("fatalInjuries") AS deaths2018
-FROM "Crashes"
-WHERE "crashYear" = 2018 AND "crashSeverity" = 'Fatal Crash';
-
-CREATE VIEW deaths2019
-AS
-SELECT SUM("fatalInjuries") AS deaths2019
-FROM "Crashes"
-WHERE "crashYear" = 2019 AND "crashSeverity" = 'Fatal Crash';
-
-CREATE VIEW deaths2020
-AS
-SELECT SUM("fatalInjuries") AS deaths2020
-FROM "Crashes"
-WHERE "crashYear" = 2020 AND "crashSeverity" = 'Fatal Crash';
-
-CREATE VIEW deaths2021
-AS
-SELECT SUM("fatalInjuries") AS deaths2021
-FROM "Crashes"
-WHERE "crashYear" = 2021 AND "crashSeverity" = 'Fatal Crash';
-
-CREATE VIEW deaths2022
-AS
-SELECT SUM("fatalInjuries") AS deaths2022
-FROM "Crashes"
-WHERE "crashYear" = 2022 AND "crashSeverity" = 'Fatal Crash';
-
--- deaths by each year in one result
 CREATE VIEW deathsByYear
 AS
-SELECT * 
-FROM deaths2018, deaths2019, deaths2020, deaths2021, deaths2022;
+SELECT DISTINCT "crashYear" AS crashYear, SUM("fatalInjuries") AS deaths
+FROM "Crashes"
+GROUP BY crashYear;
+
+
+
+-- total deaths over 5 year period
+CREATE VIEW totalDeaths
+AS
+SELECT SUM("fatalInjuries") AS totalDeaths
+FROM "Crashes";
+
+
 
 -- Most dangerous holiday period
 CREATE VIEW holidayFatalCrashes
@@ -134,6 +67,65 @@ SELECT holiday, COUNT(holiday) AS fatalCrashes
 FROM "Crashes"
 WHERE "crashSeverity" = 'Fatal Crash'
 GROUP BY holiday;
+
+
+
+-- deaths by holiday period
+CREATE VIEW holidayDeaths
+AS
+SELECT holiday, SUM("fatalInjuries") AS deaths
+FROM "Crashes"
+WHERE "crashSeverity" = 'Fatal Crash'
+GROUP BY holiday;
+
+
+
+-- deaths by region
+CREATE VIEW deathsByRegion
+AS
+SELECT region, SUM("fatalInjuries") AS deaths
+FROM "Crashes"
+WHERE "crashSeverity" = 'Fatal Crash'
+GROUP BY region
+ORDER BY deaths DESC;;
+
+
+
+-- deaths by territorial Authority
+CREATE VIEW deathsByTerritory
+AS
+SELECT region, "territorialAuthority", SUM("fatalInjuries") AS deaths
+FROM "Crashes"
+WHERE "crashSeverity" = 'Fatal Crash'
+GROUP BY region, "territorialAuthority"
+ORDER BY deaths DESC;
+
+
+
+-- count of most common factors in fatal crashes
+CREATE VIEW commonFactors
+AS
+SELECT  
+SUM("roadworks") AS roadworks,
+SUM("parkedVehicle") AS parkedVehicle,
+SUM("bridge") AS bridge,
+SUM("cliffBank") AS cliffBank,
+SUM("debris") AS debris,
+SUM("ditch") AS ditch,
+SUM("fence") AS fence,
+SUM("guardRail") AS guardRail,
+SUM("building") AS building,
+SUM("kerb") AS kerb,
+SUM("pedestrian") AS pedestrian,
+SUM("objectThrown") AS obj_thrown,
+SUM("otherObject") AS otherObject,
+SUM("slipOrFlood") AS slipOrFlood,
+SUM("strayAnimal") AS animal,
+SUM("tree") AS tree,
+SUM("river") AS river
+FROM "Crashes"
+WHERE "crashSeverity" = 'Fatal Crash';
+
 
 
 
