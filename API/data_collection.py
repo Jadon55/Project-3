@@ -18,10 +18,22 @@ def getAll():
 
     # convert the data from the database into a dict
     result_dicts = [dict(zip(column_names, row)) for row in result]
+
+    #pull from public transport table
+    pt = connection.execute(text('SELECT * FROM "public_transport"'))
+
+    # get column names from the public_transport table
+    metadata.reflect(bind=engine, only=['public_transport'])
+    column_names = metadata.tables['public_transport'].columns.keys()
+
+    # convert the public transport data from the database into a dict
+    pt_dict = [dict(zip(column_names, row)) for row in pt]
+    
+    
     # close the connection to the databse
     connection.close()
     # return the data dict
-    return result_dicts
+    return result_dicts + pt_dict
 
 # function to get all data from the "crashes" table
 def getYear(year):
