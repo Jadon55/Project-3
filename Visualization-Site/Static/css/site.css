@@ -70,7 +70,6 @@ body {
 }
 #budget {
    background-color: rgb(60, 60, 60);
-   margin-top: 10px;
    margin-bottom: 10px;
    height: 300px;
    border-radius: 15px;
@@ -89,6 +88,8 @@ table {
    border: 1px solid #ccc;
    margin: auto;
    margin-top: 40px;
+   margin-left: 10px;
+   margin-right: 10px;
 }
 th,
 td {
