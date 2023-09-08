@@ -9,8 +9,7 @@ function getData(year){
     allData = [];
     loadingScreen.style.display = "flex";
     if(year == "all"){
-        d3.json(`http://107.172.217.213:5000/api/v1.0`).then(data =>{
-            console.log(data);
+        d3.json(`http://127.0.0.1:5000/api/v1.0`).then(data =>{
             data.forEach(element => {
                 allData.push(element);
             });
@@ -24,7 +23,7 @@ function getData(year){
             loadingScreen.style.display = "none";
         });
     } else{
-        d3.json(`http://107.172.217.213:5000/api/v1.0/${year}`).then(data =>{
+        d3.json(`http://127.0.0.1:5000/api/v1.0/${year}`).then(data =>{
             data.forEach(element => {
                 allData.push(element);
             });
@@ -33,7 +32,7 @@ function getData(year){
             // graphs setup
             drawMap();
             refreshGraphs(allData);
-
+            
             // remove loading screen
             loadingScreen.style.display = "none";
         });
@@ -86,7 +85,9 @@ function addMarkers(item){
     );
 };
 function updateWindow(){
-    markers.clearLayers();
+    if (markers.getLayers().length > 0) {
+        markers.clearLayers();
+    }
     let box = map.getBounds();
     const swLat = box["_southWest"]["lat"];
     const neLat = box["_northEast"]["lat"];
