@@ -310,6 +310,8 @@ function pt_drawBar(year) {
       //removes graph when only one year is selected
       return (document.getElementById("budget").style.display = "none");
    }
+   // add radius to the budget chart
+   plotDiv[6].style.borderRadius = "15px";
 }
 
 // action listener
