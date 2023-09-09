@@ -1,0 +1,138 @@
+<html>
+   <head>
+      <title>Project 3</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+      <link rel="stylesheet" href="static/css/site.css" />
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+      <!-- Leaflet -->
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+      <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css" />
+      <!-- cluster plugin -->
+      <link rel="stylesheet" href="./static/plugin/MarkerCluster.css" />
+      <link rel="stylesheet" href="./static/plugin/MarkerCluster.Default.css" />
+   </head>
+   <body>
+      <!-- navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">Dashboard </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav">
+                  <li class="nav-item">
+                     <a class="nav-link" href="/map.html">Map</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/about.html">About</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+
+      <!-- Loading screen HTML -->
+      <div class="loading-screen" id="loading-screen">
+         <!-- Add your loading icon or message here -->
+         <div>Loading...</div>
+      </div>
+
+      <!-- title -->
+      <div class="container dashtitle">
+         <h1>New Zealand Crash Data</h1>
+      </div>
+      <!-- Dashboard -->
+      <div class="container dashboard">
+         <div class="row">
+            <!-- other graphs -->
+            <div class="other col-lg-3 order-lg-1 col-sm-6 order-sm-1">
+               <!-- selector -->
+               <div class="selector">
+                  <h2>Year / Locations</h2>
+                  <select id="dropdown" onchange="optionChanged(this.value)">
+                     <option value="all">All</option>
+                     <option value="2022">2022</option>
+                     <option value="2021">2021</option>
+                     <option value="2020">2020</option>
+                     <option value="2019">2019</option>
+                     <option value="2018">2018</option>
+                  </select>
+
+                  <div class="buttons">
+                     <button onclick="locationButton(-36.859757104447105, 174.75714701163005, 15)">Auckland</button>
+                     <button onclick="locationButton(-37.561317380758325, 175.15987425183468, 15)">Huntly</button>
+                     <br />
+                     <button onclick="locationButton(-43.5303157954806, 172.635393560578, 15)">Christchurch</button>
+                     <button onclick="locationButton(-36.396855, 174.660731, 15)">Warkworth</button>
+                  </div>
+               </div>
+               <!-- pie graph -->
+               <div id="other"></div>
+            </div>
+            <!-- map -->
+            <div class="map col-lg-6 order-lg-2 col-sm-12 order-sm-3">
+               <div style="padding: 0px" id="map">
+                  <h1 style="padding-top: 280px">MAP</h1>
+               </div>
+            </div>
+            <!-- Text Data -->
+            <div class="statdata col-lg-3 order-lg-3 col-sm-6 order-sm-2">
+               <div id="statdata">
+                  <!-- title -->
+                  <h1>Stats</h1>
+                  <!-- number of crashes -->
+                  <table>
+                     <tr>
+                        <td>Number of Crashes:</td>
+                        <td id="n-crashes">null</td>
+                     </tr>
+                     <tr>
+                        <td>Number of Fatalities:</td>
+                        <td id="n-deaths">null</td>
+                     </tr>
+                     <tr>
+                        <td>Most Dangerous Holiday:</td>
+                        <td id="holiday">null</td>
+                     </tr>
+                     <tr>
+                        <td>Most Dangerous Light Condidion:</td>
+                        <td id="light">null</td>
+                     </tr>
+                     <tr>
+                        <td>Most Dangerous Road Condidion:</td>
+                        <td id="roadCharacter">null</td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <!-- Bar Graph -->
+         <div class="row">
+            <div class="bar col-lg-12 col-sm-12">
+               <div style="padding: 0px" id="bar"></div>
+            </div>
+         </div>
+         <!-- Budget Graph -->
+         <div class="row">
+            <div class="budget col-lg-12 col-sm-12">
+               <div style="padding: 0px" id="budget"></div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Leaflet -->
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+      <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster-src.js"></script>
+      <!-- D3 -->
+      <script src="https://d3js.org/d3.v7.min.js"></script>
+      <!-- plotly -->
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <!-- cluster plugin -->
+      <script src="./static/plugin/leaflet.markercluster-src.js"></script>
+      <!-- Our JS -->
+      <script src="./static/js/app.js"></script>
+   </body>
+</html>
