@@ -114,3 +114,13 @@ FROM commonFactors;
 
 
 
+-- COUNT OF EACH VEHICLE TYPE INVOLVED IN FATAL ACCIDENTS
+SELECT *
+FROM commonVehicles;
+--	Top 5 Vehicles
+-- Station Wagon	1169
+-- Van				424
+-- Truck			315
+-- Motorcycle		286
+-- SUV				265
+
