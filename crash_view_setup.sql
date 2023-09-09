@@ -11,7 +11,8 @@ holidayFatalCrashes,
 holidayDeaths,
 deathsByRegion,
 deathsByTerritory,
-commonFactors
+commonFactors,
+commonVehicles
 ;
 
 
@@ -128,6 +129,27 @@ WHERE "crashSeverity" = 'Fatal Crash';
 
 
 
+--count common vehicles in fatal accidents
+CREATE VIEW commonVehicles
+AS
+SELECT  
+SUM("bicycle") AS bicycle,
+SUM("bus") AS bus,
+SUM("stationWagon") AS stationWagon,
+SUM("moped") AS moped,
+SUM("motorcycle") AS motorcycle,
+SUM("suv") AS SUV,
+SUM("taxi") AS taxi,
+SUM("train") AS train,
+SUM("truck") AS truck,
+SUM("van") AS van,
+SUM("pedestrian") AS pedestrian,
+SUM("utilityVehicle") AS ute,
+SUM("otherVehicleType") AS other,
+SUM("schoolBus") AS schoolBus,
+SUM("unknownVehicleType") AS unknown
+FROM "Crashes"
+WHERE "crashSeverity" = 'Fatal Crash';
 
 
 
