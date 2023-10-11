@@ -35,6 +35,11 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 ### Public Transport Expense
 - Bar graph of the amount of money New Zealand spent on public Transportation per year
 
+
+<br> <br>
 ## 3D Map
 ![3D-Map](https://github.com/Jadon55/Project-3/assets/78763124/c6e3f16d-62b9-4a8b-89cb-b578f830bc95)
 <br>
+### Crashes
+- Height: the number of injuries
+- Color: Severity of the crash (green = no injuries, yellow = minor injuries, red = fatial)
