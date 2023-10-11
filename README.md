@@ -11,6 +11,12 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 ## Dashboard
 ![Dashboard-Home](https://github.com/Jadon55/Project-3/assets/78763124/9d41dfa1-281d-4350-aa47-0ed35bff03f0)
 <br>
+### Map
+- Clusters nearby crashes together
+- Moveable and Zoomable
+- Only shows crashes in bounds of the map (for efficiency)
+ - Adds and Removes crashes when needed
+  
 ### Year / Location
 - Select the year to graph
 - 4 quick travel links to notable locations in New Zealand
