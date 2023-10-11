@@ -17,11 +17,11 @@ Year / Location
 <br>
 Stats
 - Only shows stats for crashes shown on the map.
-  - Updates when the map is moved or zoomed, or when a new year is selected
+ - Updates when the map is moved or zoomed, or when a new year is selected
 <br>
 Crashes by Holiday
 - Pie graph comparing the number of crashes that occur during a holiday period
-  - *Note: does not graph crashes that happened not in a holiday period*
+ - *Note: does not graph crashes that happened not in a holiday period*
 <br>
 Crashes by Year
 - Bar graph of the total count of crashes per year
