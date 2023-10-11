@@ -14,18 +14,18 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 Year / Location
 - Select the year to graph
 - 4 quick travel links to notable locations in New Zealand
-<br>
+
 Stats
 - Only shows stats for crashes shown on the map.
  - Updates when the map is moved or zoomed, or when a new year is selected
-<br>
+
 Crashes by Holiday
 - Pie graph comparing the number of crashes that occur during a holiday period
  - *Note: does not graph crashes that happened not in a holiday period*
-<br>
+
 Crashes by Year
 - Bar graph of the total count of crashes per year
-<br>
+
 Public Transport Expense
 - Bar graph of the amount of money New Zealand spent on public Transportation per year
 
