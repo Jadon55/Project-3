@@ -16,22 +16,17 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 - Moveable and Zoomable
 - Only shows crashes in bounds of the map (for efficiency)
   - Adds and Removes crashes when needed
-  
 ### Year / Location
 - Select the year to graph
 - 4 quick travel links to notable locations in New Zealand
-
 ### Stats
 - Only shows stats for crashes shown on the map.
   - Updates when the map is moved or zoomed, or when a new year is selected
-
 ### Crashes by Holiday
 - Pie graph comparing the number of crashes that occur during a holiday period
   - *Note: does not graph crashes that happened not in a holiday period*
-
 ### Crashes by Year
 - Bar graph of the total count of crashes per year
-
 ### Public Transport Expense
 - Bar graph of the amount of money New Zealand spent on public Transportation per year
 
@@ -41,5 +36,7 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 ![3D-Map](https://github.com/Jadon55/Project-3/assets/78763124/c6e3f16d-62b9-4a8b-89cb-b578f830bc95)
 <br>
 ### Crashes
-- Height: the number of injuries
-- Color: Severity of the crash (green = no injuries, yellow = minor injuries, red = fatial)
+- Height of the tower
+  - the number of injuries
+- Color of the tower
+  - Severity of the crash (green = no injuries, yellow = minor injuries, red = fatial)
