@@ -15,7 +15,7 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 - Clusters nearby crashes together
 - Moveable and Zoomable
 - Only shows crashes in bounds of the map (for efficiency)
- - Adds and Removes crashes when needed
+  - Adds and Removes crashes when needed
   
 ### Year / Location
 - Select the year to graph
@@ -23,11 +23,11 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 
 ### Stats
 - Only shows stats for crashes shown on the map.
- - Updates when the map is moved or zoomed, or when a new year is selected
+  - Updates when the map is moved or zoomed, or when a new year is selected
 
 ### Crashes by Holiday
 - Pie graph comparing the number of crashes that occur during a holiday period
- - *Note: does not graph crashes that happened not in a holiday period*
+  - *Note: does not graph crashes that happened not in a holiday period*
 
 ### Crashes by Year
 - Bar graph of the total count of crashes per year
