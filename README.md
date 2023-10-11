@@ -11,22 +11,22 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 ## Dashboard
 ![Dashboard-Home](https://github.com/Jadon55/Project-3/assets/78763124/9d41dfa1-281d-4350-aa47-0ed35bff03f0)
 <br>
-Year / Location
+# Year / Location
 - Select the year to graph
 - 4 quick travel links to notable locations in New Zealand
 
-Stats
+# Stats
 - Only shows stats for crashes shown on the map.
  - Updates when the map is moved or zoomed, or when a new year is selected
 
-Crashes by Holiday
+# Crashes by Holiday
 - Pie graph comparing the number of crashes that occur during a holiday period
  - *Note: does not graph crashes that happened not in a holiday period*
 
-Crashes by Year
+# Crashes by Year
 - Bar graph of the total count of crashes per year
 
-Public Transport Expense
+# Public Transport Expense
 - Bar graph of the amount of money New Zealand spent on public Transportation per year
 
 ## 3D Map
