@@ -10,6 +10,7 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 
 ## Dashboard
 ![Dashboard-Home](https://github.com/Jadon55/Project-3/assets/78763124/c35a3da5-8c5c-4e4d-b90b-4a3e6aaae879)
+<br>
 Quick Video of the site in action: https://github.com/Jadon55/Project-3/assets/78763124/3ccb7049-5843-44d2-aeda-57c30548e742
 <br>
 
