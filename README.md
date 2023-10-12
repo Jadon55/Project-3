@@ -1,7 +1,7 @@
 # Project-3
 Data Science Bootcamp - Project 3
 <br><br>
-This is a demonstration of the finished Visualization site. Check out [Project Proposal](https://github.com/Jadon55/Project-3/blob/main/Proposal.md) for more information on the data used and the questions asked.
+*Note: This is a demonstration of the finished Visualization site. Check out [Project Proposal](https://github.com/Jadon55/Project-3/blob/Jadon-Branch/Proposal.md) for more information on the data used and the questions asked.*
 <br>
 
 ## Quick Links
@@ -9,8 +9,11 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 - 3D Map
 
 ## Dashboard
-![Dashboard-Home](https://github.com/Jadon55/Project-3/assets/78763124/9d41dfa1-281d-4350-aa47-0ed35bff03f0)
+![Dashboard-Home](https://github.com/Jadon55/Project-3/assets/78763124/c35a3da5-8c5c-4e4d-b90b-4a3e6aaae879)
 <br>
+Quick Video of the site in action: https://github.com/Jadon55/Project-3/assets/78763124/3ccb7049-5843-44d2-aeda-57c30548e742
+<br>
+
 ### Map
 - Clusters nearby crashes together
 - Moveable and Zoomable
