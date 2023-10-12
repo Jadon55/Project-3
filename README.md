@@ -9,7 +9,9 @@ This is a demonstration of the finished Visualization site. Check out [Project P
 - 3D Map
 
 ## Dashboard
-![Dashboard-Home](https://github.com/Jadon55/Project-3/assets/78763124/9d41dfa1-281d-4350-aa47-0ed35bff03f0)
+![Dashboard-Home](https://github.com/Jadon55/Project-3/assets/78763124/ef8e0ddc-c784-4b9e-a63e-79c25b55517b)
+
+
 <br>
 ### Map
 - Clusters nearby crashes together
